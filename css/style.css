@@ -1,0 +1,8 @@
+.profile-picture {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 20px #4ECDC4, 0 0 40px #349090;
+    animation: glow-border 1.5s infinite alternate;
+}

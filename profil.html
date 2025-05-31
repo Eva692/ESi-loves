@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>ESI L.O.V.E</title>
+	<link rel="stylesheet" href="messages.css">
+	<link reel="stylesheet" href="changestyle.css">
+	<script src="messages.js"></script>
+	<script src="flux.js"></script>
+    <link rel="stylesheet" href="style3.css">
+	<meta name="viewport" content="width=device-width, initialscale=1.0">
+</head>
+<body>
+    <header id="header">
+        <img src="image1.jpg" alt="Image de rencontre">
+        <h1>Bienvenue à ESI Love</h1>
+    </header>
+
+ </style>
+ <p> <u> PHOTO DE PROFIL <u> </p>
+    <div class="profile-display">
+        <img src=" <?php echo $imageSrc; ?>
+<br>
+    <h1>Photo de profil</h1>
+
+    <div class="profile-picture"> <br>
+        <img id="img-preview" src="" alt="Photo de profil" width="300px">
+    </div>
+
+    <input type="file" accept="image/*" onchange="updateImage(this)" <br>>
+
+    <script>
+        function updateImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("img-preview").src = e.target.result;
+                    localStorage.setItem("profileImage", e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+		
+
+        window.onload = function() {
+            var savedImage = localStorage.getItem("profileImage");
+            if (savedImage) {
+                document.getElementById("img-preview").src = savedImage;
+            }
+        }
+    </script>
+	<label for="recherche"> recherche :</label>
+        <input type="text" id="" name="recherche" placeholder="Effectuez une recherche " required>
+      <button type="submit"> rechercher </button>
+    <!-- Barre de Navigation Horizontale -->
+ <div id="nav">
+    <ul>
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#" onclick="afficherMessages()">Messages</a></li>
+        <li><a href="#">Informations</a></li>
+    </ul>
+</div>
+<section id="informations">
+    <h2>Actualités & Informations</h2>
+    <div id="flux-container">
+        Chargement des actualités...
+    </div>
+</section>
+(
+<section id="messages">
+    <h2>Messages</h2>
+    <div class="message-container">
+        <div class="message received">
+            <p>Bonjour ! Comment vas-tu aujourd’hui ?</p>
+        </div>
+        <div class="message sent">
+            <p>Ça va bien, merci ! Et toi ?</p>
+        </div>
+    </div>
+    <textarea id="message-input" placeholder="Écris un message..."></textarea>
+    <button onclick="sendMessage()">Envoyer</button>
+</section>
+
+<style>
+    #messages {
+        width: 100%;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: orange;
+    }
+    .message-container {
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 10px;
+        background: black;
+        border-radius: 5px;
+    }
+    .message {
+        margin: 5px 0;
+        padding: 8px;
+        border-radius: 5px;
+    }
+    .message.sent {
+        background: #d1e7ff;
+        text-align: right;
+    }
+    .message.received {
+        background: #e2e2e2;
+        text-align: left;
+    }
+    #message-input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 10px;
+    }
+    button {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        background: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 5px;
+    }
+</style>
+<script>
+    function sendMessage() {
+        var input = document.getElementById("message-input");
+        var messageContainer = document.querySelector(".message-container");
+
+        if (input.value.trim() !== "") {
+            var newMessage = document.createElement("div");
+            newMessage.className = "message sent";
+            newMessage.innerHTML = "<p>" + input.value + "</p>";
+            messageContainer.appendChild(newMessage);
+            input.value = "";
+            messageContainer.scrollTop = messageContainer.scrollHeight;
+        }
+		}
+		function afficherMessages() {
+    var messagesSection = document.getElementById("messages");
+    
+    if (messagesSection.style.display === "none" || messagesSection.style.display === "") {
+        messagesSection.style.display = "block"; // Affiche la section
+    } else {
+        messagesSection.style.display = "none"; // Cache la section si elle est déjà visible
+    }
+	
+}
+
+</script>
+	
+	
+</body>
+</html>
