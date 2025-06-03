@@ -1,22 +1,50 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenu à ESI LOVE</title>
-    <style>
-        body {
-            font-family: Times, sans-serif;
-            background-image: url('https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?w=500&auto=format&fit=crop&q=60');
-            background-size: cover;
-            background-position: center;
-            margin: 20px;
-            media (max-width: 768px);
-        background-color: lightblue;
+ <meta charset="UTF-8">
+ <center>
+ <title style="color:orange"> Bienvenu a Esi love </title>
+ </center>
+ <style>
+  body {
+  font-family: Times, sans-serif;
+  background-image: url('https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5mb3JtYXRpcXVlfGVufDB8fDB8fHww');
+    background-size: cover;
+    background-position: center;
+    margin: 20px;
     }
-}
-
-        }
+  form {background-color: rgba(255, 255, 255, 0.8); 
+     padding: 20px;
+     border-radius: 10px;
+     max-width: 400px;
+     margin: auto;
+     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+ label {
+ display: block;
+ margin-top: 10px;      
+ font-weight: bold;
+ }
+ input {
+ width: 100%;
+ padding: 8px;
+ margin-top: 5px; 
+ margin-bottom: 15px;
+ border: 1px solid #ccc;
+ border-radius: 5px;
+ }
+ button {
+ background-color: #4CAF50;
+ color: white;
+ padding: 10px 15px;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ }
+ button:hover {
+ background-color: #45a049;
+ }
+ 
         form {
             background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
@@ -53,9 +81,9 @@
     <script>
         function rediriger() {
             var nom = document.getElementById("Nom").value;
-            var prenom = document.getElementById("prenom").value;
+            var prenom=document.getElementById("prenom").value;
 
-            if (nom && prenom && username ) {
+            if (nom && prenom) {
                 window.location.href = "profil.html?nom=" + encodeURIComponent(nom) + "&prenom=" + encodeURIComponent(prenom);
             } else {
                 alert("Veuillez remplir les champs Nom et Prénom.");
@@ -66,17 +94,17 @@
 <body>
     <header>
         <center>
-            <h1 style="color:orange"><u>Bienvenu à ESI LOVE</u></h1>
+            <h1 style="color:orange"><u>Bienvenu à ESI L.O.V.E</u></h1>
         </center>
     </header>
     <p style="color:red"><u>Veuillez entrer vos informations pour l'inscription</u></p>
-    <form onsubmit="rediriger(); return false;">
+	<form action="upload.php" method="POST" enctype="multipart/form-data">
         <label for="Nom">Nom :</label>
         <input type="text" id="Nom" name="Nom" placeholder="Entrez votre nom" required>
 
-        <label for="username">Username :</label>
-        <input type="text" id="username" name="username" placeholder="Entrez votre nom d'utilisateur" required>
-
+    <label for="nom d'utilisateur "> username :</label>
+        <input type "text" id="username" name="d'utilisateur" placeholder="entrez votre nom d'utilisteur" requiered>
+		
         <label for="prenom">Prénom :</label>
         <input type="text" id="prenom" name="prenom" placeholder="Entrez votre prénom" required>
 
@@ -95,10 +123,15 @@
             <option value="masculin">Masculin</option>
         </select>
         <br><br>
-
         <center>
             <button type="submit">Envoyer</button>
         </center>
+		<details> 
+		<p>  
+		  < label for="nom d'utilisateur "> username :</label>
+        <input type="text" id="username" name="d'utilisateur" placeholder="Entrez votre nom d'utilisateur" requiered>
     </form>
 </body>
-</html>
+ </form>
+</body>
+</html> 
