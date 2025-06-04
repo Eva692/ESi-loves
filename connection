@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion - ESI LOVE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Times, sans-serif; background: #f0f0f0; margin: 0; }
+        .container { max-width: 350px; margin: 70px auto; background: #fff; border-radius: 10px; box-shadow: 0 0 10px #bbb; padding: 30px 20px; }
+        h2 { text-align: center; color: #4CAF50; }
+        label { font-weight: bold; }
+        input { width: 100%; margin: 7px 0 15px 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
+        button { width: 100%; background-color: #4CAF50; color: white; padding: 10px; border: none; border-radius: 5px; font-size: 16px; margin-top: 5px; }
+        button:hover { background-color: #45a049; }
+        .error { color: red; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Connexion</h2>
+        <form action="verif.php" method="post">
+            <label for="username">Nom d'utilisateur :</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Se connecter</button>
+        </form>
+        <?php if(isset($_GET['erreur'])): ?>
+            <div class="error"><?= htmlspecialchars($_GET['erreur']) ?></div>
+        <?php endif; ?>
+    </div>
+</body>
+</html>
