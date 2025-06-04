@@ -2,224 +2,158 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>ESI L.O.V.E - Chat</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            background: #f0f2f5;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .chat-app {
-            max-width: 500px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 14px;
-            box-shadow: 0 2px 16px #0001;
-            display: flex;
-            flex-direction: column;
-            min-height: 600px;
-        }
-        .chat-header {
-            background: #1877f2;
-            color: #fff;
-            text-align: center;
-            padding: 22px 0 18px 0;
-            border-radius: 14px 14px 0 0;
-            font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-        .user-switch {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 12px 0;
-        }
-        .user-switch button {
-            background: #e4e6eb;
-            border: none;
-            border-radius: 20px;
-            padding: 6px 20px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .user-switch .active {
-            background: #1877f2;
-            color: #fff;
-        }
-        .chat-messages {
-            flex: 1;
-            padding: 12px 16px;
-            overflow-y: auto;
-            background: #f0f2f5;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .msg-row {
-            display: flex;
-            align-items: flex-end;
-        }
-        .msg-row.user1 {
-            justify-content: flex-start;
-        }
-        .msg-row.user2 {
-            justify-content: flex-end;
-        }
-        .msg-bubble {
-            max-width: 70%;
-            padding: 10px 14px;
-            border-radius: 18px;
-            font-size: 1rem;
-            line-height: 1.3;
-            position: relative;
-            box-shadow: 0 2px 8px #0001;
-            margin: 0 6px;
-        }
-        .msg-row.user1 .msg-bubble {
-            background: #e7f3ff;
-            color: #222;
-            border-bottom-left-radius: 5px;
-        }
-        .msg-row.user2 .msg-bubble {
-            background: #DCF8C6;
-            color: #222;
-            border-bottom-right-radius: 5px;
-        }
-        .avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin: 0 4px;
-            border: 2px solid #fff;
-            box-shadow: 0 1px 4px #0002;
-        }
-        .input-area {
-            display: flex;
-            gap: 8px;
-            padding: 14px 16px;
-            background: #fff;
-            border-radius: 0 0 14px 14px;
-            border-top: 1px solid #eee;
-        }
-        .input-area input {
-            flex: 1;
-            padding: 10px;
-            border-radius: 18px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-            outline: none;
-            background: #f0f2f5;
-        }
-        .input-area button {
-            background: #1877f2;
-            color: #fff;
-            border: none;
-            border-radius: 18px;
-            padding: 10px 24px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .input-area button:hover {
-            background: #145ecc;
-        }
-        @media (max-width: 600px) {
-            .chat-app {
-                max-width: 100vw;
-                margin: 0;
-                border-radius: 0;
-                min-height: 100vh;
-            }
-        }
-    </style>
+    <title>ESI L.O.V.E</title>
+	<link rel="stylesheet" href="messages.css">
+	<link reel="stylesheet" href="changestyle.css">
+	<script src="messages.js"></script>
+	<script src="flux.js"></script>
+    <link rel="stylesheet" href="style3.css">
+	<meta name="viewport" content="width=device-width, initialscale=1.0">
 </head>
 <body>
-    <div class="chat-app">
-        <div class="chat-header">
-            ESI L.O.V.E - Messenger
-        </div>
-        <div class="user-switch">
-            <button id="user1Btn" class="active" onclick="switchUser('User1')">User 1</button>
-            <button id="user2Btn" onclick="switchUser('User2')">User 2</button>
-        </div>
-        <div id="chatMessages" class="chat-messages"></div>
-        <form class="input-area" onsubmit="sendMessage(event)">
-            <input type="text" id="messageInput" placeholder="Écris un message..." autocomplete="off" />
-            <button type="submit">Envoyer</button>
-        </form>
+    <header id="header">
+        <img src="image1.jpg" alt="Image de rencontre">
+        <h1>Bienvenue à ESI Love</h1>
+    </header>
+
+ </style>
+ <p> <u> PHOTO DE PROFIL <u> </p>
+    <div class="profile-display">
+        <img src=" <?php echo $imageSrc; ?>
+<br>
+    <h1>Photo de profil</h1>
+
+    <div class="profile-picture"> <br>
+        <img id="img-preview" src="" alt="Photo de profil" width="300px">
     </div>
+
+    <input type="file" accept="image/*" onchange="updateImage(this)" <br>>
+
     <script>
-        // Simulation de 2 utilisateurs
-        let currentUser = "User1";
-        const avatars = {
-            User1: "👩‍💻",
-            User2: "🧑‍🚀"
-        };
-        let messages = [
-            {sender: "User1", content: "Bonjour ! Comment vas-tu aujourd’hui ?"},
-            {sender: "User2", content: "Ça va bien, merci ! Et toi ?"}
-        ];
-        function switchUser(user) {
-            currentUser = user;
-            document.getElementById('user1Btn').classList.toggle('active', user === "User1");
-            document.getElementById('user2Btn').classList.toggle('active', user === "User2");
-            document.getElementById('messageInput').placeholder = user === "User1" ? "User 1 écrit..." : "User 2 écrit...";
-        }
-        function renderMessages() {
-            const chat = document.getElementById('chatMessages');
-            chat.innerHTML = '';
-            messages.forEach(msg => {
-                const row = document.createElement('div');
-                row.className = "msg-row " + (msg.sender === "User1" ? "user1" : "user2");
-                const avatarDiv = document.createElement('div');
-                avatarDiv.className = 'avatar';
-                avatarDiv.textContent = avatars[msg.sender];
-                const bubble = document.createElement('div');
-                bubble.className = 'msg-bubble';
-                bubble.textContent = msg.content;
-                if(msg.sender === "User1") {
-                    row.appendChild(avatarDiv);
-                    row.appendChild(bubble);
-                } else {
-                    row.appendChild(bubble);
-                    row.appendChild(avatarDiv);
+        function updateImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("img-preview").src = e.target.result;
+                    localStorage.setItem("profileImage", e.target.result);
                 }
-                chat.appendChild(row);
-            });
-            chat.scrollTop = chat.scrollHeight;
-        }
-        function sendMessage(e) {
-            e.preventDefault();
-            const input = document.getElementById('messageInput');
-            if (input.value.trim() === "") return;
-            messages.push({sender: currentUser, content: input.value});
-            renderMessages();
-            input.value = "";
-            input.focus();
-        }
-        // Affiche les messages à l'ouverture
-        renderMessages();
-        // Pour tester en temps réel : simule un "autre utilisateur" qui répond après 2s
-        /*
-        setInterval(() => {
-            if(currentUser === "User1") {
-                messages.push({sender: "User2", content: "Message automatique de User2 !"});
-            } else {
-                messages.push({sender: "User1", content: "Message automatique de User1 !"});
+                reader.readAsDataURL(input.files[0]);
             }
-            renderMessages();
-        }, 8000);
-        */
+        }
+		
+
+        window.onload = function() {
+            var savedImage = localStorage.getItem("profileImage");
+            if (savedImage) {
+                document.getElementById("img-preview").src = savedImage;
+            }
+        }
     </script>
+	<label for="recherche"> recherche :</label>
+        <input type="text" id="" name="recherche" placeholder="Effectuez une recherche " required>
+      <button type="submit"> rechercher </button>
+    <!-- Barre de Navigation Horizontale -->
+ <div id="nav">
+    <ul>
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#" onclick="afficherMessages()">Messages</a></li>
+        <li><a href="#">Informations</a></li>
+    </ul>
+</div>
+<section id="informations">
+    <h2>Actualités & Informations</h2>
+    <div id="flux-container">
+        Chargement des actualités...
+    </div>
+</section>
+(
+<section id="messages">
+    <h2>Messages</h2>
+    <div class="message-container">
+        <div class="message received">
+            <p>Bonjour ! Comment vas-tu aujourd’hui ?</p>
+        </div>
+        <div class="message sent">
+            <p>Ça va bien, merci ! Et toi ?</p>
+        </div>
+    </div>
+    <textarea id="message-input" placeholder="Écris un message..."></textarea>
+    <button onclick="sendMessage()">Envoyer</button>
+</section>
+
+<style>
+    #messages {
+        width: 100%;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: orange;
+    }
+    .message-container {
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 10px;
+        background: black;
+        border-radius: 5px;
+    }
+    .message {
+        margin: 5px 0;
+        padding: 8px;
+        border-radius: 5px;
+    }
+    .message.sent {
+        background: #d1e7ff;
+        text-align: right;
+    }
+    .message.received {
+        background: #e2e2e2;
+        text-align: left;
+    }
+    #message-input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 10px;
+    }
+    button {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        background: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 5px;
+    }
+</style>
+<script>
+    function sendMessage() {
+        var input = document.getElementById("message-input");
+        var messageContainer = document.querySelector(".message-container");
+
+        if (input.value.trim() !== "") {
+            var newMessage = document.createElement("div");
+            newMessage.className = "message sent";
+            newMessage.innerHTML = "<p>" + input.value + "</p>";
+            messageContainer.appendChild(newMessage);
+            input.value = "";
+            messageContainer.scrollTop = messageContainer.scrollHeight;
+        }
+		}
+		function afficherMessages() {
+    var messagesSection = document.getElementById("messages");
+    
+    if (messagesSection.style.display === "none" || messagesSection.style.display === "") {
+        messagesSection.style.display = "block"; // Affiche la section
+    } else {
+        messagesSection.style.display = "none"; // Cache la section si elle est déjà visible
+    }
+	
+}
+
+</script>
+	
+	
 </body>
 </html>
